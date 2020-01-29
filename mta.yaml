@@ -1,0 +1,39 @@
+ID: mercenary_master_artifacts
+_schema-version: '2.1'
+version: 0.0.1
+modules:
+  - name: mercenary_master_artifact_db
+    type: hdb
+    path: mercenary_master_artifact_db
+    requires:
+      - name: hdi_hdb1
+        properties:
+          TARGET_CONTAINER: '~{hdi-container-name}'
+      - name: hdi_mercenary_master_artifact_db
+      - name: grant_service
+  - name: mercenary_master_artifact_node
+    type: nodejs
+    path: mercenary_master_artifact_node
+    provides:
+      - name: mercenary_master_artifact_node_api
+        properties:
+          url: '${default-url}'
+  - name: mercenary_master_artifact_ui
+    type: html5
+    path: mercenary_master_artifact_ui
+resources:
+  - name: hdi_mercenary_master_artifact_db
+    parameters:
+      config:
+        schema: mercenary
+    properties:
+      hdi-container-name: '${service-name}'
+    type: com.sap.xs.hdi-container
+  - name: hdi_hdb1
+    type: com.sap.xs.hdi-container
+    properties:
+      hdi-container-name: '${service-name}'
+  - name: grant_service
+    type: org.cloudfoundry.existing-service
+    parameters:
+      service-name: remote_system_grant_service

@@ -1,0 +1,28 @@
+{
+	"remote_system_grant_service": {
+		"object_owner": {
+			"roles": [
+				"GEN_GRANTOR_ROLE"
+			],
+			"global_object_privileges": [{
+				"name": "SHXE",
+				"type": "REMOTE SOURCE",
+				"privileges": [
+					"CREATE VIRTUAL TABLE", "CREATE REMOTE SUBSCRIPTION"
+				]
+			},
+			{
+				"name": "HXE",
+				"type": "REMOTE SOURCE",
+				"privileges": [
+					"CREATE VIRTUAL TABLE", "CREATE REMOTE SUBSCRIPTION"
+				]
+			}]
+		},
+		"application_user": {
+			"roles": [
+				"GEN_GRANTOR_ROLE"
+			]
+		}
+	}
+}
